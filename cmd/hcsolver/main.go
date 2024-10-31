@@ -8,7 +8,6 @@ import (
 	"github.com/Implex-ltd/hcsolver/cmd/hcsolver/database"
 	"github.com/Implex-ltd/hcsolver/cmd/hcsolver/router"
 	"github.com/Implex-ltd/hcsolver/internal/utils"
-	_ "github.com/Implex-ltd/hcsolver/internal/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/surrealdb/surrealdb.go"
 )
