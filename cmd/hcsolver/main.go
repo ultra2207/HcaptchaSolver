@@ -69,15 +69,35 @@ func save_fp() {
 }
 
 func main() {
+	// Load the configuration settings
 	config.LoadSettings()
-	database.ConnectDB(config.Config.Database.IP, config.Config.Database.Username, config.Config.Database.Password, config.Config.Database.Port)
 
+	// Connect to the database
+	database.ConnectDB(
+		config.Config.Database.IP,
+		config.Config.Database.Username,
+		config.Config.Database.Password,
+		config.Config.Database.Port,
+	)
+
+	// Print API configuration details
+	fmt.Println("API Configuration:")
+	fmt.Printf(" - Database IP: %s\n", config.Config.Database.IP)
+	fmt.Printf(" - Database Username: %s\n", config.Config.Database.Username)
+	fmt.Printf(" - Database Port: %d\n", config.Config.Database.Port)
+	fmt.Printf(" - API Port: %d\n", config.Config.API.Port)
+
+	// Perform additional setup or initialization if necessary
 	save_fp()
 
+	// Initialize Fiber and set up routes
 	app := fiber.New()
 	router.SetupRoutes(app)
 
-	config.Logger.Info("DB Connected and api online")
+	// Log that the server is ready and listening
+	config.Logger.Info("DB Connected and API online")
+
+	// Start the server and handle errors if they occur
 	if err := app.Listen(fmt.Sprintf(":%d", config.Config.API.Port)); err != nil {
 		panic(err)
 	}

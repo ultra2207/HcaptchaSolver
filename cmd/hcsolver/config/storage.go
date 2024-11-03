@@ -61,8 +61,8 @@ func LoadSettings() {
 	encoder := zap.NewDevelopmentEncoderConfig()
 	encoder.EncodeLevel = zapcore.CapitalColorLevelEncoder
 
-	fileEncoder := zap.NewProductionEncoderConfig()
-	fileEncoder.EncodeTime = zapcore.ISO8601TimeEncoder
+	//fileEncoder := zap.NewProductionEncoderConfig()
+	//fileEncoder.EncodeTime = zapcore.ISO8601TimeEncoder
 
 	core := zapcore.NewTee(
 		zapcore.NewCore(

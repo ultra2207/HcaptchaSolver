@@ -35,6 +35,13 @@ var (
 			Domain:        "discord.com",
 			Enabled:       true,
 		},
+		"8cf23430-f9c8-4aaa-9ba2-da32f65adf2e": {
+			MinSubmitTime: 3200,
+			MaxSubmitTime: 13000,
+			AlwaysText:    true,
+			Domain:        "store.steampowered.com",
+			Enabled:       true,
+		},
 		// join guild
 		"b2b02ab5-7dae-4d6f-830e-7b55634c888b": {
 			MinSubmitTime: 3200,

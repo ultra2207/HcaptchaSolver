@@ -29,7 +29,7 @@ func TestNewFingerprintBuilder(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewFingerprintBuilder(tt.args.useragent, "https://discord.com")
+			got, err := NewFingerprintBuilder(tt.args.useragent, "https://store.steampowered.com")
 			if err != nil {
 				panic(err)
 			}

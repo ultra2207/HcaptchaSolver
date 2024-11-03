@@ -10,7 +10,6 @@ import (
 	"github.com/Implex-ltd/hcsolver/cmd/hcsolver/config"
 	"github.com/Implex-ltd/hcsolver/cmd/hcsolver/database"
 	"github.com/Implex-ltd/hcsolver/internal/handlers/task/validator"
-	"github.com/Implex-ltd/hcsolver/internal/handlers/user"
 	"github.com/Implex-ltd/hcsolver/internal/hcaptcha"
 	"github.com/Implex-ltd/hcsolver/internal/model"
 	"github.com/gofiber/fiber/v2"
@@ -63,15 +62,15 @@ func checkBody(B *BodyNewSolveTask) (errors []string) {
 	if len(B.UserAgent) > 255 {
 		errors = append(errors, "user-agent is invalid")
 	}
-
-	if B.Proxy == "" {
-		errors = append(errors, "please provide proxy")
-	} else {
-		if len(B.Proxy) > 500 || !strings.HasPrefix(B.Proxy, "http") {
-			errors = append(errors, "invalid proxy format, please use http(s)://user:pass@ip:port or http(s)://ip:port")
+	/*
+		if B.Proxy == "" {
+			errors = append(errors, "please provide proxy")
+		} else {
+			if len(B.Proxy) > 500 || !strings.HasPrefix(B.Proxy, "http") {
+				errors = append(errors, "invalid proxy format, please use http(s)://user:pass@ip:port or http(s)://ip:port")
+			}
 		}
-	}
-
+	*/
 	if B.Rqdata != "" {
 		if len(B.Rqdata) > 15000 {
 			errors = append(errors, "rqdata seems too long, please contact support")
@@ -196,36 +195,7 @@ func CreateTask(c *fiber.Ctx) error {
 		}
 	}
 
-	authUser, err := user.GetUserByID(auth)
-	if err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"success": false,
-			"data":    "invalid api-key",
-		})
-	}
-
 	selectedUser := new(model.User)
-	err = surrealdb.Unmarshal(authUser, &selectedUser)
-	if err != nil {
-		return c.Status(500).JSON(fiber.Map{
-			"success": false,
-			"data":    "failed to parse user, please report to admin",
-		})
-	}
-
-	if selectedUser.Balance <= 0 {
-		return c.Status(fiber.StatusTeapot).JSON(fiber.Map{
-			"success": false,
-			"data":    "no credit left, please refill balance",
-		})
-	}
-
-	if selectedUser.ThreadUsedHcaptcha >= selectedUser.ThreadMaxHcaptcha {
-		return c.Status(fiber.StatusTooManyRequests).JSON(fiber.Map{
-			"success": false,
-			"data":    "you reached max thread limit, please buy more slot",
-		})
-	}
 
 	if settings != nil {
 		if !settings.Enabled && !selectedUser.BypassRestrictedSites {

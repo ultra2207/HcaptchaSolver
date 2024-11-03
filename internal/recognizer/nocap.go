@@ -68,8 +68,8 @@ func SolvePic(toSolve map[string]map[string]string, prompt, target string) (map[
 		Images:  imgs,
 		Target:  prompt,
 		Method:  "hcaptcha_base64",
-		Sitekey: "4c672d35-0701-42b2-88c3-78380b0db560",
-		Site:    "discord.com",
+		Sitekey: "8cf23430-f9c8-4aaa-9ba2-da32f65adf2e",
+		Site:    "store.steampowered.com",
 		Ln:      "en",
 		Type:    "grid",
 	})
@@ -173,8 +173,8 @@ func SolvePicSelect(toSolve map[string]map[string]string, prompt, target string)
 		Images:  imgs,
 		Target:  prompt,
 		Method:  "hcaptcha_base64",
-		Sitekey: "4c672d35-0701-42b2-88c3-78380b0db560",
-		Site:    "discord.com",
+		Sitekey: "8cf23430-f9c8-4aaa-9ba2-da32f65adf2e",
+		Site:    "store.steampowered.com",
 		Ln:      "en",
 		Type:    "bbox",
 	})

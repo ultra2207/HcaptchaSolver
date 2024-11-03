@@ -1,5 +1,3 @@
-# **Crapsolver backend API**
-
 ## **Running SurrealDB**
 
 ### Docker

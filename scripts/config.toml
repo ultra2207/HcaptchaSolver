@@ -7,6 +7,6 @@ api_expiration = 1
 
 [database]
 username = "root"
-password = "rootnikoontoplmao5245" # rootnikoontoplmao5245
-ip = "0.0.0.0"  # This binds the service to all interfaces, including 144.172.76.66
-port = 8000                       #8000
+password = "rootnikoontoplmao5245"
+ip = "0.0.0.0"
+port = 8000                      
